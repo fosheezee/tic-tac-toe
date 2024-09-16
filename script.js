@@ -8,3 +8,239 @@ const bottomLeft = document.getElementById('bottom-left');
 const bottomCenter = document.getElementById('bottom-center');
 const bottomRight = document.getElementById('bottom-right');
 
+// let topLeftPiece = "";
+// let topCenterPiece = "";
+// let topRightPiece = "";
+// let middleLeftPiece = "";
+// let middleCenterPiece = "";
+// let middleRightPiece = "";
+// let bottomLeftPiece = "";
+// let bottomCenterPiece = "";
+// let bottomRightPiece = "";
+
+const gameBoard = new Map();
+gameBoard.set('topLeftBoard', "");
+gameBoard.set('topCenterBoard', "");
+gameBoard.set('topRightBoard', "");
+gameBoard.set('middleLeftBoard', "");
+gameBoard.set('middleCenterBoard', "");
+gameBoard.set('middleRightBoard', "");
+gameBoard.set('bottomLeftBoard', "");
+gameBoard.set('bottomCenterBoard', "");
+gameBoard.set('bottomRightBoard', "");
+
+const startGameButton = document.getElementById('start-game-button');
+const playerGamePiece = "x";
+let gameActive = true;
+let myTurn = true;
+
+
+topLeft.addEventListener("click", () => {
+    if(gameActive == true && myTurn == true) {
+        topLeft.classList.add(playerGamePiece)
+        // topLeftPiece = "x";
+        gameBoard.set('topLeftBoard', "x");
+        checkForWin();
+    }
+});
+topCenter.addEventListener("click", () => {
+    if(gameActive == true && myTurn == true) {
+        topCenter.classList.add(playerGamePiece)
+        // topCenterPiece = "x";
+        gameBoard.set('topCenterBoard', "x");
+        checkForWin();
+    }
+});
+topRight.addEventListener("click", () => {
+        if(gameActive == true && myTurn == true) {
+        topRight.classList.add(playerGamePiece)
+        // topRightPiece = "x";
+        gameBoard.set('topRightBoard', "x");
+        checkForWin();
+    }
+});
+middleLeft.addEventListener("click", () => {
+        if(gameActive == true && myTurn == true) {
+        middleLeft.classList.add(playerGamePiece)
+        // middleLeftPiece = "x";
+        gameBoard.set('middleLeftBoard', "x");
+        checkForWin();
+    }
+});
+middleCenter.addEventListener("click", () => {
+    if(gameActive == true && myTurn == true) {
+        middleCenter.classList.add(playerGamePiece)
+        // middleCenterPiece = "x";
+        gameBoard.set('middleCenterBoard', "x");
+        checkForWin();
+    }
+});
+middleRight.addEventListener("click", () => {
+    if(gameActive == true && myTurn == true) {
+        middleRight.classList.add(playerGamePiece)
+        // middleRightPiece = "x";
+        gameBoard.set('middleRightBoard', "x");
+        checkForWin();
+    }
+});
+bottomLeft.addEventListener("click", () => {
+    if(gameActive == true && myTurn == true) {
+        bottomLeft.classList.add(playerGamePiece)
+        // bottomLeftPiece = "x";
+        gameBoard.set('bottomLeftBoard', "x");
+        checkForWin();
+    }
+});
+bottomCenter.addEventListener("click", () => {
+    if(gameActive == true && myTurn == true) {
+        bottomCenter.classList.add(playerGamePiece)
+        // bottomCenterPiece = "x";
+        gameBoard.set('bottomCenterBoard', "x");
+        checkForWin();
+    }
+});
+bottomRight.addEventListener("click", () => {
+    if(gameActive == true && myTurn == true) {
+        bottomRight.classList.add(playerGamePiece)
+        // bottomRightPiece = "x";
+        gameBoard.set('bottomRightBoard', "x");
+        checkForWin();
+    }
+});
+
+startGameButton.addEventListener('click', () => startGame());
+
+function startGame() {
+    topLeft.classList.remove(playerGamePiece);
+    topCenter.classList.remove(playerGamePiece);
+    topRight.classList.remove(playerGamePiece);
+    middleLeft.classList.remove(playerGamePiece);
+    middleCenter.classList.remove(playerGamePiece);
+    middleRight.classList.remove(playerGamePiece);
+    bottomLeft.classList.remove(playerGamePiece);
+    bottomCenter.classList.remove(playerGamePiece);
+    bottomRight.classList.remove(playerGamePiece);
+
+    // topLeftPiece = "";
+    // topCenterPiece = "";
+    // topRightPiece = "";
+    // middleLeftPiece = "";
+    // middleCenterPiece = "";
+    // middleRightPiece = "";
+    // bottomLeftPiece = "";
+    // bottomCenterPiece = "";
+    // bottomRightPiece = "";
+
+    gameBoard.set('topLeftBoard', "");
+    gameBoard.set('topCenterBoard', "");
+    gameBoard.set('topRightBoard', "");
+    gameBoard.set('middleLeftBoard', "");
+    gameBoard.set('middleCenterBoard', "");
+    gameBoard.set('middleRightBoard', "");
+    gameBoard.set('bottomLeftBoard', "");
+    gameBoard.set('bottomCenterBoard', "");
+    gameBoard.set('bottomRightBoard', "");
+
+    // checkForWin();
+
+    gameActive = true;
+}
+
+function gameOver() {
+    gameActive = false;
+}
+
+function checkForWin() {
+    
+    for(const [key, value] of gameBoard) {
+        console.log(`${key}, ${value}`);
+    }
+
+    // Check top row
+    if(gameBoard.get('topLeftBoard') != "" 
+    && gameBoard.get('topCenterBoard') != "" 
+    && gameBoard.get('topRightBoard') != ""
+    && gameBoard.get('topLeftBoard') == playerGamePiece 
+    && gameBoard.get('topCenterBoard') == playerGamePiece 
+    && gameBoard.get('topRightBoard') == playerGamePiece) {
+        console.log(playerGamePiece + " won!");
+        gameOver();
+    }
+
+    // Check middle row
+    if(gameBoard.get('middleLeftBoard') != "" 
+    && gameBoard.get('middleCenterBoard') != "" 
+    && gameBoard.get('middleRightBoard') != ""
+    && gameBoard.get('middleLeftBoard') == playerGamePiece 
+    && gameBoard.get('middleCenterBoard') == playerGamePiece 
+    && gameBoard.get('middleRightBoard') == playerGamePiece) {
+        console.log(playerGamePiece + " won!");
+        gameOver();
+    }
+
+    // Check bottom row
+    if(gameBoard.get('bottomLeftBoard') != "" 
+    && gameBoard.get('bottomCenterBoard') != "" 
+    && gameBoard.get('bottomRightBoard') != ""
+    && gameBoard.get('bottomLeftBoard') == playerGamePiece 
+    && gameBoard.get('bottomCenterBoard') == playerGamePiece 
+    && gameBoard.get('bottomRightBoard') == playerGamePiece) {
+        console.log(playerGamePiece + " won!");
+        gameOver();
+    }
+
+    // Check left column
+    if(gameBoard.get('topLeftBoard') != "" 
+    && gameBoard.get('middleLeftBoard') != "" 
+    && gameBoard.get('bottomLeftBoard') != ""
+    && gameBoard.get('topLeftBoard') == playerGamePiece 
+    && gameBoard.get('middleLeftBoard') == playerGamePiece 
+    && gameBoard.get('bottomLeftBoard') == playerGamePiece) {
+        console.log(playerGamePiece + " won!");
+        gameOver();
+    }
+
+    // Check center column
+    if(gameBoard.get('topCenterBoard') != "" 
+    && gameBoard.get('middleCenterBoard') != "" 
+    && gameBoard.get('bottomCenterBoard') != ""
+    && gameBoard.get('topCenterBoard') == playerGamePiece 
+    && gameBoard.get('middleCenterBoard') == playerGamePiece 
+    && gameBoard.get('bottomCenterBoard') == playerGamePiece) {
+        console.log(playerGamePiece + " won!");
+        gameOver();
+    }
+
+    // Check right column
+    if(gameBoard.get('topRightBoard') != "" 
+    && gameBoard.get('middleRightBoard') != "" 
+    && gameBoard.get('bottomRightBoard') != ""
+    && gameBoard.get('topRightBoard') == playerGamePiece 
+    && gameBoard.get('middleRightBoard') == playerGamePiece 
+    && gameBoard.get('bottomRightBoard') == playerGamePiece) {
+        console.log(playerGamePiece + " won!");
+        gameOver();
+    }
+
+    // Check diagonally top left to bottom right
+    if(gameBoard.get('topLeftBoard') != "" 
+    && gameBoard.get('middleCenterBoard') != "" 
+    && gameBoard.get('bottomRightBoard') != ""
+    && gameBoard.get('topLeftBoard') == playerGamePiece 
+    && gameBoard.get('middleCenterBoard') == playerGamePiece 
+    && gameBoard.get('bottomRightBoard') == playerGamePiece) {
+        console.log(playerGamePiece + " won!");
+        gameOver();
+    }
+
+    // Check diagonally top right to bottom left
+    if(gameBoard.get('topRightBoard') != "" 
+    && gameBoard.get('middleCenterBoard') != "" 
+    && gameBoard.get('bottomLeftBoard') != ""
+    && gameBoard.get('topRightBoard') == playerGamePiece 
+    && gameBoard.get('middleCenterBoard') == playerGamePiece 
+    && gameBoard.get('bottomLeftBoard') == playerGamePiece) {
+        console.log(playerGamePiece + " won!");
+        gameOver();
+    }
+}

@@ -23,7 +23,7 @@ body {
 .game-item {
     width: 125px;
     height: 125px;
-    background-image: url(images/o.png);
+    /* background-image: url(images/o.png); */
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -59,4 +59,12 @@ body {
 
 .button:active {
     transform: translateY(4px);
+}
+
+.x {
+    background-image: url(images/x.png);
+}
+
+.o {
+    background-image: url(images/o.png);
 }
