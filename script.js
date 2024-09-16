@@ -8,16 +8,6 @@ const bottomLeft = document.getElementById('bottom-left');
 const bottomCenter = document.getElementById('bottom-center');
 const bottomRight = document.getElementById('bottom-right');
 
-// let topLeftPiece = "";
-// let topCenterPiece = "";
-// let topRightPiece = "";
-// let middleLeftPiece = "";
-// let middleCenterPiece = "";
-// let middleRightPiece = "";
-// let bottomLeftPiece = "";
-// let bottomCenterPiece = "";
-// let bottomRightPiece = "";
-
 const gameBoard = new Map();
 gameBoard.set('topLeftBoard', "");
 gameBoard.set('topCenterBoard', "");
@@ -34,11 +24,12 @@ const playerGamePiece = "x";
 let gameActive = true;
 let myTurn = true;
 
+startGameButton.style.display = "none";
+
 
 topLeft.addEventListener("click", () => {
     if(gameActive == true && myTurn == true) {
         topLeft.classList.add(playerGamePiece)
-        // topLeftPiece = "x";
         gameBoard.set('topLeftBoard', "x");
         checkForWin();
     }
@@ -46,7 +37,6 @@ topLeft.addEventListener("click", () => {
 topCenter.addEventListener("click", () => {
     if(gameActive == true && myTurn == true) {
         topCenter.classList.add(playerGamePiece)
-        // topCenterPiece = "x";
         gameBoard.set('topCenterBoard', "x");
         checkForWin();
     }
@@ -54,7 +44,6 @@ topCenter.addEventListener("click", () => {
 topRight.addEventListener("click", () => {
         if(gameActive == true && myTurn == true) {
         topRight.classList.add(playerGamePiece)
-        // topRightPiece = "x";
         gameBoard.set('topRightBoard', "x");
         checkForWin();
     }
@@ -62,7 +51,6 @@ topRight.addEventListener("click", () => {
 middleLeft.addEventListener("click", () => {
         if(gameActive == true && myTurn == true) {
         middleLeft.classList.add(playerGamePiece)
-        // middleLeftPiece = "x";
         gameBoard.set('middleLeftBoard', "x");
         checkForWin();
     }
@@ -70,7 +58,6 @@ middleLeft.addEventListener("click", () => {
 middleCenter.addEventListener("click", () => {
     if(gameActive == true && myTurn == true) {
         middleCenter.classList.add(playerGamePiece)
-        // middleCenterPiece = "x";
         gameBoard.set('middleCenterBoard', "x");
         checkForWin();
     }
@@ -78,7 +65,6 @@ middleCenter.addEventListener("click", () => {
 middleRight.addEventListener("click", () => {
     if(gameActive == true && myTurn == true) {
         middleRight.classList.add(playerGamePiece)
-        // middleRightPiece = "x";
         gameBoard.set('middleRightBoard', "x");
         checkForWin();
     }
@@ -86,7 +72,6 @@ middleRight.addEventListener("click", () => {
 bottomLeft.addEventListener("click", () => {
     if(gameActive == true && myTurn == true) {
         bottomLeft.classList.add(playerGamePiece)
-        // bottomLeftPiece = "x";
         gameBoard.set('bottomLeftBoard', "x");
         checkForWin();
     }
@@ -94,7 +79,6 @@ bottomLeft.addEventListener("click", () => {
 bottomCenter.addEventListener("click", () => {
     if(gameActive == true && myTurn == true) {
         bottomCenter.classList.add(playerGamePiece)
-        // bottomCenterPiece = "x";
         gameBoard.set('bottomCenterBoard', "x");
         checkForWin();
     }
@@ -102,7 +86,6 @@ bottomCenter.addEventListener("click", () => {
 bottomRight.addEventListener("click", () => {
     if(gameActive == true && myTurn == true) {
         bottomRight.classList.add(playerGamePiece)
-        // bottomRightPiece = "x";
         gameBoard.set('bottomRightBoard', "x");
         checkForWin();
     }
@@ -121,16 +104,6 @@ function startGame() {
     bottomCenter.classList.remove(playerGamePiece);
     bottomRight.classList.remove(playerGamePiece);
 
-    // topLeftPiece = "";
-    // topCenterPiece = "";
-    // topRightPiece = "";
-    // middleLeftPiece = "";
-    // middleCenterPiece = "";
-    // middleRightPiece = "";
-    // bottomLeftPiece = "";
-    // bottomCenterPiece = "";
-    // bottomRightPiece = "";
-
     gameBoard.set('topLeftBoard', "");
     gameBoard.set('topCenterBoard', "");
     gameBoard.set('topRightBoard', "");
@@ -141,13 +114,12 @@ function startGame() {
     gameBoard.set('bottomCenterBoard', "");
     gameBoard.set('bottomRightBoard', "");
 
-    // checkForWin();
-
     gameActive = true;
 }
 
 function gameOver() {
     gameActive = false;
+    startGameButton.style.display = "";
 }
 
 function checkForWin() {
