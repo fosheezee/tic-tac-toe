@@ -8,19 +8,31 @@
     <title>Tic Tac Toe</title>
 </head>
 <body>
-    <div class="game-container">
-        <div id="top-left" class="game-item"></div>
-        <div id="top-center" class="game-item"></div>
-        <div id="top-right" class="game-item"></div>
-        <div id="middle-left" class="game-item"></div>
-        <div id="middle-center" class="game-item"></div>
-        <div id="middle-right" class="game-item"></div>
-        <div id="bottom-left" class="game-item"></div>
-        <div id="bottom-center" class="game-item"></div>
-        <div id="bottom-right" class="game-item"></div>
+    <div class="background">
+        <div class="game-container">
+            <div id="top-left" class="game-item"></div>
+            <div id="top-center" class="game-item"></div>
+            <div id="top-right" class="game-item"></div>
+            <div id="middle-left" class="game-item"></div>
+            <div id="middle-center" class="game-item"></div>
+            <div id="middle-right" class="game-item"></div>
+            <div id="bottom-left" class="game-item"></div>
+            <div id="bottom-center" class="game-item"></div>
+            <div id="bottom-right" class="game-item"></div>
+        </div>
     </div>
     <div style="text-align: center;">
         <div id="start-game-button" class="button">New Game</div>
+    </div>
+    <div class="difficulty-container">
+        Choose Difficulty:
+        <div class="custom-select">
+            <select id="difficulty-select ">
+                <option>Easy</option>
+                <option>Medium</option>
+                <option>Hard</option>
+            </select>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

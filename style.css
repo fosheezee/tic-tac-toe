@@ -2,34 +2,38 @@ body {
     background: darkorange;
 }
 
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.background {
+    width: 500px;
+    /* height: 500px; */
+    margin: auto;
+    background-image: url(images/tic-tac-toe-board.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 .game-container {
     display: grid;
     width: 500px;
-    height: 500px;
-    margin: auto;
     /* padding: 5px; */
     grid-template-columns: [left] 1fr [center] 1fr [right] 1fr;
     grid-template-rows: [top] 1fr [center] 1fr [bottom] 1fr;
     justify-items: center;
     align-items: center;;
     /* gap: 10px 10px; */
-    background-image: url(images/tic-tac-toe-board.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    /* border: 5px solid black; */
 }
 
 .game-item {
     width: 125px;
     height: 125px;
-    /* background-image: url(images/o.png); */
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    /* background-color: #666666; */
-    /* border: 5px solid black; */
-    /* border-radius: 10px; */
 }
 
 .game-item:hover {
@@ -37,7 +41,7 @@ body {
 }
 
 #start-game-button {
-    
+    margin-top: 20px;
 }
 
 .button {
@@ -55,6 +59,23 @@ body {
 .button:hover {
     cursor: pointer;
     background-color: #888888;
+}
+
+.difficulty-container {
+    display: none;
+    margin: 10px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.custom-select {
+    margin-top: 10px; 
+}
+
+.custom-select select {
+    background: darkgray;
+    font-size:20px;
 }
 
 .button:active {

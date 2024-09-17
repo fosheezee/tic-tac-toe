@@ -20,8 +20,10 @@ gameBoard.set('bottomCenterBoard', "");
 gameBoard.set('bottomRightBoard', "");
 
 const startGameButton = document.getElementById('start-game-button');
+const difficultySelect = document.getElementById('difficulty-select');
 const playerGamePiece = "x";
 const opponentGamePiece = "o";
+let gameDifficulty = "easy";
 let gameActive = true;
 let myTurn = true;
 
@@ -182,10 +184,6 @@ function gameOver() {
 }
 
 function checkForWin() {
-    
-    // for(const [key, value] of gameBoard) {
-    //     console.log(`${key}, ${value}`);
-    // }
 
     // Check top row
     if(gameBoard.get('topLeftBoard') != "" 
@@ -194,8 +192,9 @@ function checkForWin() {
     && gameBoard.get('topLeftBoard') == playerGamePiece 
     && gameBoard.get('topCenterBoard') == playerGamePiece 
     && gameBoard.get('topRightBoard') == playerGamePiece) {
-        console.log(playerGamePiece + " won!");
+        // console.log(playerGamePiece + " won!");
         gameOver();
+        // alert('You won!');
     }
 
     // Check middle row
@@ -205,8 +204,9 @@ function checkForWin() {
     && gameBoard.get('middleLeftBoard') == playerGamePiece 
     && gameBoard.get('middleCenterBoard') == playerGamePiece 
     && gameBoard.get('middleRightBoard') == playerGamePiece) {
-        console.log(playerGamePiece + " won!");
+        // console.log(playerGamePiece + " won!");
         gameOver();
+        // alert('You won!');
     }
 
     // Check bottom row
@@ -216,8 +216,9 @@ function checkForWin() {
     && gameBoard.get('bottomLeftBoard') == playerGamePiece 
     && gameBoard.get('bottomCenterBoard') == playerGamePiece 
     && gameBoard.get('bottomRightBoard') == playerGamePiece) {
-        console.log(playerGamePiece + " won!");
+        // console.log(playerGamePiece + " won!");
         gameOver();
+        // alert('You won!');
     }
 
     // Check left column
@@ -227,8 +228,9 @@ function checkForWin() {
     && gameBoard.get('topLeftBoard') == playerGamePiece 
     && gameBoard.get('middleLeftBoard') == playerGamePiece 
     && gameBoard.get('bottomLeftBoard') == playerGamePiece) {
-        console.log(playerGamePiece + " won!");
+        // console.log(playerGamePiece + " won!");
         gameOver();
+        // alert('You won!');
     }
 
     // Check center column
@@ -238,8 +240,9 @@ function checkForWin() {
     && gameBoard.get('topCenterBoard') == playerGamePiece 
     && gameBoard.get('middleCenterBoard') == playerGamePiece 
     && gameBoard.get('bottomCenterBoard') == playerGamePiece) {
-        console.log(playerGamePiece + " won!");
+        // console.log(playerGamePiece + " won!");
         gameOver();
+        // alert('You won!');
     }
 
     // Check right column
@@ -249,8 +252,9 @@ function checkForWin() {
     && gameBoard.get('topRightBoard') == playerGamePiece 
     && gameBoard.get('middleRightBoard') == playerGamePiece 
     && gameBoard.get('bottomRightBoard') == playerGamePiece) {
-        console.log(playerGamePiece + " won!");
+        // console.log(playerGamePiece + " won!");
         gameOver();
+        // alert('You won!');
     }
 
     // Check diagonally top left to bottom right
@@ -260,8 +264,9 @@ function checkForWin() {
     && gameBoard.get('topLeftBoard') == playerGamePiece 
     && gameBoard.get('middleCenterBoard') == playerGamePiece 
     && gameBoard.get('bottomRightBoard') == playerGamePiece) {
-        console.log(playerGamePiece + " won!");
+        // console.log(playerGamePiece + " won!");
         gameOver();
+        // alert('You won!');
     }
 
     // Check diagonally top right to bottom left
@@ -271,16 +276,13 @@ function checkForWin() {
     && gameBoard.get('topRightBoard') == playerGamePiece 
     && gameBoard.get('middleCenterBoard') == playerGamePiece 
     && gameBoard.get('bottomLeftBoard') == playerGamePiece) {
-        console.log(playerGamePiece + " won!");
+        // console.log(playerGamePiece + " won!");
         gameOver();
+        // alert('You won!');
     }
 }
 
 function checkForLoss() {
-    
-    // for(const [key, value] of gameBoard) {
-    //     console.log(`${key}, ${value}`);
-    // }
 
     // Check top row
     if(gameBoard.get('topLeftBoard') != "" 
@@ -289,8 +291,9 @@ function checkForLoss() {
     && gameBoard.get('topLeftBoard') == opponentGamePiece 
     && gameBoard.get('topCenterBoard') == opponentGamePiece 
     && gameBoard.get('topRightBoard') == opponentGamePiece) {
-        console.log(opponentGamePiece + " won!");
+        // console.log(opponentGamePiece + " won!");
         gameOver();
+        // alert('You lost!');
     }
 
     // Check middle row
@@ -300,8 +303,9 @@ function checkForLoss() {
     && gameBoard.get('middleLeftBoard') == opponentGamePiece 
     && gameBoard.get('middleCenterBoard') == opponentGamePiece 
     && gameBoard.get('middleRightBoard') == opponentGamePiece) {
-        console.log(opponentGamePiece + " won!");
+        // console.log(opponentGamePiece + " won!");
         gameOver();
+        // alert('You lost!');
     }
 
     // Check bottom row
@@ -311,8 +315,9 @@ function checkForLoss() {
     && gameBoard.get('bottomLeftBoard') == opponentGamePiece 
     && gameBoard.get('bottomCenterBoard') == opponentGamePiece 
     && gameBoard.get('bottomRightBoard') == opponentGamePiece) {
-        console.log(opponentGamePiece + " won!");
+        // console.log(opponentGamePiece + " won!");
         gameOver();
+        // alert('You lost!');
     }
 
     // Check left column
@@ -322,8 +327,9 @@ function checkForLoss() {
     && gameBoard.get('topLeftBoard') == opponentGamePiece 
     && gameBoard.get('middleLeftBoard') == opponentGamePiece 
     && gameBoard.get('bottomLeftBoard') == opponentGamePiece) {
-        console.log(opponentGamePiece + " won!");
+        // console.log(opponentGamePiece + " won!");
         gameOver();
+        // alert('You lost!');
     }
 
     // Check center column
@@ -333,8 +339,9 @@ function checkForLoss() {
     && gameBoard.get('topCenterBoard') == opponentGamePiece 
     && gameBoard.get('middleCenterBoard') == opponentGamePiece 
     && gameBoard.get('bottomCenterBoard') == opponentGamePiece) {
-        console.log(opponentGamePiece + " won!");
+        // console.log(opponentGamePiece + " won!");
         gameOver();
+        // alert('You lost!');
     }
 
     // Check right column
@@ -344,8 +351,9 @@ function checkForLoss() {
     && gameBoard.get('topRightBoard') == opponentGamePiece 
     && gameBoard.get('middleRightBoard') == opponentGamePiece 
     && gameBoard.get('bottomRightBoard') == opponentGamePiece) {
-        console.log(opponentGamePiece + " won!");
+        // console.log(opponentGamePiece + " won!");
         gameOver();
+        // alert('You lost!');
     }
 
     // Check diagonally top left to bottom right
@@ -355,8 +363,9 @@ function checkForLoss() {
     && gameBoard.get('topLeftBoard') == opponentGamePiece 
     && gameBoard.get('middleCenterBoard') == opponentGamePiece 
     && gameBoard.get('bottomRightBoard') == opponentGamePiece) {
-        console.log(opponentGamePiece + " won!");
+        // console.log(opponentGamePiece + " won!");
         gameOver();
+        // alert('You lost!');
     }
 
     // Check diagonally top right to bottom left
@@ -366,22 +375,25 @@ function checkForLoss() {
     && gameBoard.get('topRightBoard') == opponentGamePiece 
     && gameBoard.get('middleCenterBoard') == opponentGamePiece 
     && gameBoard.get('bottomLeftBoard') == opponentGamePiece) {
-        console.log(opponentGamePiece + " won!");
+        // console.log(opponentGamePiece + " won!");
         gameOver();
+        // alert('You lost!');
     }
 }
 
 function checkForTie() {
     if(getAvailableSpots().length == 0) {
-        console.log('You tied!');
+        // console.log('You tied!');
         gameOver();
+        
+        // alert('You tied!');
     }
 }
 
 function opponentsTurn() {
     myTurn = false;
 
-    opponentsChoice = chooseAvailableSpot();
+    opponentsChoice = chooseAvailableSpot(gameDifficulty);
     // console.log(opponentsChoice);
 
     if(opponentsChoice == "topLeft") {
@@ -512,11 +524,13 @@ function getAvailableSpots() {
     return availableGameBoard;
 }
 
-function chooseAvailableSpot() {
+function chooseAvailableSpot(difficulty) {
     
-    let available = getAvailableSpots();
+    if(difficulty == "easy") {
+        let available = getAvailableSpots();
 
-    const random = Math.floor(Math.random() * available.length);
-    
-    return available[random];
+        const random = Math.floor(Math.random() * available.length);
+        
+        return available[random];
+    }
 }
