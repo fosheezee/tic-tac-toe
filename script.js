@@ -21,9 +21,10 @@ gameBoard.set('bottomRightBoard', "");
 
 const startGameButton = document.getElementById('start-game-button');
 const difficultySelect = document.getElementById('difficulty-select');
+difficultySelect.value = "hard";
 const playerGamePiece = "x";
 const opponentGamePiece = "o";
-let gameDifficulty = "easy";
+let gameDifficulty = "hard";
 let gameActive = true;
 let myTurn = true;
 
@@ -140,6 +141,7 @@ bottomRight.addEventListener("click", () => {
 });
 
 startGameButton.addEventListener('click', () => startGame());
+difficultySelect.addEventListener('change', () => gameDifficulty = difficultySelect.value);
 
 function startGame() {
     topLeft.classList.remove(playerGamePiece);
@@ -527,10 +529,259 @@ function getAvailableSpots() {
 function chooseAvailableSpot(difficulty) {
     
     if(difficulty == "easy") {
-        let available = getAvailableSpots();
+        return makeRandomMove();
+    }
+    if(difficulty == "medium") {
+        return makeBetterMove();
+    }
+    if(difficulty == "hard") {
+        return makeBestMove();
+    }
+}
+
+function makeRandomMove() {
+    let available = getAvailableSpots();
 
         const random = Math.floor(Math.random() * available.length);
         
         return available[random];
+}
+
+function makeBetterMove() {
+    if(canIWin() != "") {
+        return canIWin();
     }
+    if(canILose() != "") {
+        return canILose();
+    }
+    else {
+        return makeRandomMove();
+    }
+}
+
+function makeBestMove() {
+    if(canIWin() != "") {
+        return canIWin();
+    }
+    if(canILose() != "") {
+        return canILose();
+    }
+    else {
+        return makeRandomMove();
+    }
+}
+
+function canIWin() {
+
+    let winningSpot = "";
+
+    // Check top left
+    if((gameBoard.get('topLeftBoard') == "" 
+    && gameBoard.get('topCenterBoard') == opponentGamePiece
+    && gameBoard.get('topRightBoard') == opponentGamePiece)
+    || (gameBoard.get('topLeftBoard') == "" 
+    && gameBoard.get('middleLeftBoard') == opponentGamePiece
+    && gameBoard.get('bottomLeftBoard') == opponentGamePiece)
+    || (gameBoard.get('topLeftBoard') == "" 
+    && gameBoard.get('middleCenterBoard') == opponentGamePiece
+    && gameBoard.get('bottomRightBoard') == opponentGamePiece)) {
+        winningSpot = "topLeft";
+    }
+    // Check top center
+    if((gameBoard.get('topLeftBoard') == opponentGamePiece
+    && gameBoard.get('topCenterBoard') == ""
+    && gameBoard.get('topRightBoard') == opponentGamePiece)
+    || (gameBoard.get('topCenterBoard') == ""
+    && gameBoard.get('middleCenterBoard') == opponentGamePiece
+    && gameBoard.get('bottomCenterBoard') == opponentGamePiece)) {
+        winningSpot = "topCenter";
+    }
+    // Check top right
+    if((gameBoard.get('topLeftBoard') == opponentGamePiece
+    && gameBoard.get('topCenterBoard') == opponentGamePiece
+    && gameBoard.get('topRightBoard') == "")
+    || (gameBoard.get('topRightBoard') == ""
+    && gameBoard.get('middleRightBoard') == opponentGamePiece
+    && gameBoard.get('bottomRightBoard') == opponentGamePiece)
+    || (gameBoard.get('topRightBoard') == ""
+    && gameBoard.get('middleCenterBoard') == opponentGamePiece
+    && gameBoard.get('bottomLeftBoard') == "")) {
+        winningSpot = "topRight";
+    }
+    // Check middle left
+    if((gameBoard.get('middleLeftBoard') == "" 
+    && gameBoard.get('middleCenterBoard') == opponentGamePiece
+    && gameBoard.get('middleRightBoard') == opponentGamePiece)
+    || (gameBoard.get('topLeftBoard') == opponentGamePiece
+    && gameBoard.get('middleLeftBoard') == ""
+    && gameBoard.get('bottomLeftBoard') == opponentGamePiece)) {
+        winningSpot = "middleLeft";
+    }
+    // Check middle center
+    if((gameBoard.get('middleLeftBoard') == opponentGamePiece
+    && gameBoard.get('middleCenterBoard') == ""
+    && gameBoard.get('middleRightBoard') == opponentGamePiece)
+    || (gameBoard.get('topCenterBoard') == opponentGamePiece
+    && gameBoard.get('middleCenterBoard') == ""
+    && gameBoard.get('bottomCenterBoard') == opponentGamePiece)
+    || (gameBoard.get('topLeftBoard') == opponentGamePiece
+    && gameBoard.get('middleCenterBoard') == ""
+    && gameBoard.get('bottomRightBoard') == opponentGamePiece)
+    || (gameBoard.get('topRightBoard') == opponentGamePiece
+    && gameBoard.get('middleCenterBoard') == ""
+    && gameBoard.get('bottomRightBoard') == opponentGamePiece)) {
+        winningSpot = "middleCenter";
+    }
+    // Check middle right
+    if((gameBoard.get('middleLeftBoard') == opponentGamePiece
+    && gameBoard.get('middleCenterBoard') == opponentGamePiece
+    && gameBoard.get('middleRightBoard') == "")
+    || (gameBoard.get('topRightBoard') == opponentGamePiece
+    && gameBoard.get('middleRightBoard') == ""
+    && gameBoard.get('bottomRightBoard') == opponentGamePiece)) {
+        winningSpot = "middleRight";
+    }
+    // Check bottom left
+    if((gameBoard.get('bottomLeftBoard') == "" 
+    && gameBoard.get('bottomCenterBoard') == opponentGamePiece
+    && gameBoard.get('bottomRightBoard') == opponentGamePiece)
+    || (gameBoard.get('topLeftBoard') == opponentGamePiece
+    && gameBoard.get('middleLeftBoard') == opponentGamePiece
+    && gameBoard.get('bottomLeftBoard') == "")
+    || (gameBoard.get('bottomLeftBoard') == "" 
+    && gameBoard.get('middleCenterBoard') == opponentGamePiece
+    && gameBoard.get('topRightBoard') == opponentGamePiece)) {
+        winningSpot = "bottomLeft";
+    }
+    // Check bottom center
+    if((gameBoard.get('bottomLeftBoard') == opponentGamePiece
+    && gameBoard.get('bottomCenterBoard') == ""
+    && gameBoard.get('bottomRightBoard') == opponentGamePiece)
+    || (gameBoard.get('topCenterBoard') == opponentGamePiece
+    && gameBoard.get('middleCenterBoard') == opponentGamePiece
+    && gameBoard.get('bottomCenterBoard') == "")) {
+        winningSpot = "bottomCenter";
+    }
+    // Check bottom right
+    if((gameBoard.get('bottomLeftBoard') == opponentGamePiece
+    && gameBoard.get('bottomCenterBoard') == opponentGamePiece
+    && gameBoard.get('bottomRightBoard') == "")
+    || (gameBoard.get('topRightBoard') == opponentGamePiece
+    && gameBoard.get('middleRightBoard') == opponentGamePiece
+    && gameBoard.get('bottomRightBoard') == "")
+    || (gameBoard.get('topLeftBoard') == opponentGamePiece
+    && gameBoard.get('middleCenterBoard') == opponentGamePiece
+    && gameBoard.get('bottomRightBoard') == "")) {
+        winningSpot = "bottomRight";
+    }
+
+    return winningSpot;
+    
+}
+
+function canILose() {
+
+    let losingSpot = "";
+
+    // Check top left
+    if((gameBoard.get('topLeftBoard') == "" 
+    && gameBoard.get('topCenterBoard') == playerGamePiece
+    && gameBoard.get('topRightBoard') == playerGamePiece)
+    || (gameBoard.get('topLeftBoard') == "" 
+    && gameBoard.get('middleLeftBoard') == playerGamePiece
+    && gameBoard.get('bottomLeftBoard') == playerGamePiece)
+    || (gameBoard.get('topLeftBoard') == "" 
+    && gameBoard.get('middleCenterBoard') == playerGamePiece
+    && gameBoard.get('bottomRightBoard') == playerGamePiece)) {
+        losingSpot = "topLeft";
+    }
+    // Check top center
+    if((gameBoard.get('topLeftBoard') == playerGamePiece
+    && gameBoard.get('topCenterBoard') == ""
+    && gameBoard.get('topRightBoard') == playerGamePiece)
+    || (gameBoard.get('topCenterBoard') == ""
+    && gameBoard.get('middleCenterBoard') == playerGamePiece
+    && gameBoard.get('bottomCenterBoard') == playerGamePiece)) {
+        losingSpot = "topCenter";
+    }
+    // Check top right
+    if((gameBoard.get('topLeftBoard') == playerGamePiece
+    && gameBoard.get('topCenterBoard') == playerGamePiece
+    && gameBoard.get('topRightBoard') == "")
+    || (gameBoard.get('topRightBoard') == ""
+    && gameBoard.get('middleRightBoard') == playerGamePiece
+    && gameBoard.get('bottomRightBoard') == playerGamePiece)
+    || (gameBoard.get('topRightBoard') == ""
+    && gameBoard.get('middleCenterBoard') == playerGamePiece
+    && gameBoard.get('bottomLeftBoard') == "")) {
+        losingSpot = "topRight";
+    }
+    // Check middle left
+    if((gameBoard.get('middleLeftBoard') == "" 
+    && gameBoard.get('middleCenterBoard') == playerGamePiece
+    && gameBoard.get('middleRightBoard') == playerGamePiece)
+    || (gameBoard.get('topLeftBoard') == playerGamePiece
+    && gameBoard.get('middleLeftBoard') == ""
+    && gameBoard.get('bottomLeftBoard') == playerGamePiece)) {
+        losingSpot = "middleLeft";
+    }
+    // Check middle center
+    if((gameBoard.get('middleLeftBoard') == playerGamePiece
+    && gameBoard.get('middleCenterBoard') == ""
+    && gameBoard.get('middleRightBoard') == playerGamePiece)
+    || (gameBoard.get('topCenterBoard') == playerGamePiece
+    && gameBoard.get('middleCenterBoard') == ""
+    && gameBoard.get('bottomCenterBoard') == playerGamePiece)
+    || (gameBoard.get('topLeftBoard') == playerGamePiece
+    && gameBoard.get('middleCenterBoard') == ""
+    && gameBoard.get('bottomRightBoard') == playerGamePiece)
+    || (gameBoard.get('topRightBoard') == playerGamePiece
+    && gameBoard.get('middleCenterBoard') == ""
+    && gameBoard.get('bottomRightBoard') == playerGamePiece)) {
+        losingSpot = "middleCenter";
+    }
+    // Check middle right
+    if((gameBoard.get('middleLeftBoard') == playerGamePiece
+    && gameBoard.get('middleCenterBoard') == playerGamePiece
+    && gameBoard.get('middleRightBoard') == "")
+    || (gameBoard.get('topRightBoard') == playerGamePiece
+    && gameBoard.get('middleRightBoard') == ""
+    && gameBoard.get('bottomRightBoard') == playerGamePiece)) {
+        losingSpot = "middleRight";
+    }
+    // Check bottom left
+    if((gameBoard.get('bottomLeftBoard') == "" 
+    && gameBoard.get('bottomCenterBoard') == playerGamePiece
+    && gameBoard.get('bottomRightBoard') == playerGamePiece)
+    || (gameBoard.get('topLeftBoard') == playerGamePiece
+    && gameBoard.get('middleLeftBoard') == playerGamePiece
+    && gameBoard.get('bottomLeftBoard') == "")
+    || (gameBoard.get('bottomLeftBoard') == "" 
+    && gameBoard.get('middleCenterBoard') == playerGamePiece
+    && gameBoard.get('topRightBoard') == playerGamePiece)) {
+        losingSpot = "bottomLeft";
+    }
+    // Check bottom center
+    if((gameBoard.get('bottomLeftBoard') == playerGamePiece
+    && gameBoard.get('bottomCenterBoard') == ""
+    && gameBoard.get('bottomRightBoard') == playerGamePiece)
+    || (gameBoard.get('topCenterBoard') == playerGamePiece
+    && gameBoard.get('middleCenterBoard') == playerGamePiece
+    && gameBoard.get('bottomCenterBoard') == "")) {
+        losingSpot = "bottomCenter";
+    }
+    // Check bottom right
+    if((gameBoard.get('bottomLeftBoard') == playerGamePiece
+    && gameBoard.get('bottomCenterBoard') == playerGamePiece
+    && gameBoard.get('bottomRightBoard') == "")
+    || (gameBoard.get('topRightBoard') == playerGamePiece
+    && gameBoard.get('middleRightBoard') == playerGamePiece
+    && gameBoard.get('bottomRightBoard') == "")
+    || (gameBoard.get('topLeftBoard') == playerGamePiece
+    && gameBoard.get('middleCenterBoard') == playerGamePiece
+    && gameBoard.get('bottomRightBoard') == "")) {
+        losingSpot = "bottomRight";
+    }
+
+    return losingSpot;
 }

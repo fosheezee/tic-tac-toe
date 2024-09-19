@@ -62,7 +62,7 @@ img {
 }
 
 .difficulty-container {
-    display: none;
+    /* display: none; */
     margin: 10px;
     text-align: center;
     font-size: 20px;
