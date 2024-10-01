@@ -41,7 +41,7 @@ img {
 }
 
 #start-game-button {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .button {
@@ -61,11 +61,18 @@ img {
     background-color: #888888;
 }
 
-.difficulty-container {
+#difficulty-container {
     /* display: none; */
     margin: 10px;
     text-align: center;
     font-size: 20px;
+    font-weight: bold;
+}
+
+#last-game-result {
+    font-size: 30px;
+    margin-top: 20px;
+    text-align: center;
     font-weight: bold;
 }
 

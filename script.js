@@ -19,7 +19,9 @@ gameBoard.set('bottomLeftBoard', "");
 gameBoard.set('bottomCenterBoard', "");
 gameBoard.set('bottomRightBoard', "");
 
+const lastGameResult = document.getElementById('last-game-result');
 const startGameButton = document.getElementById('start-game-button');
+const difficultyContainer = document.getElementById('difficulty-container');
 const difficultySelect = document.getElementById('difficulty-select');
 difficultySelect.value = "hard";
 const playerGamePiece = "x";
@@ -28,9 +30,10 @@ let gameDifficulty = "hard";
 let gameActive = true;
 let myTurn = true;
 
+lastGameResult.style.display = "none";
 startGameButton.style.display = "none";
 
-
+// topLeft.addEventListener("click", makePlayerMove('topLeft'));
 topLeft.addEventListener("click", () => {
     if(gameActive == true && myTurn == true && getAvailableSpots().includes('topLeft')) {
         topLeft.classList.add(playerGamePiece);
@@ -40,6 +43,10 @@ topLeft.addEventListener("click", () => {
         
         if(gameActive == true) {
             opponentsTurn();
+            if(gameActive == true) {
+                lastGameResult.style.display = "none";
+                difficultyContainer.style.display = "none";
+            }
         }
     }
 });
@@ -52,6 +59,10 @@ topCenter.addEventListener("click", () => {
         
         if(gameActive == true) {
             opponentsTurn();
+            if(gameActive == true) {
+                lastGameResult.style.display = "none";
+                difficultyContainer.style.display = "none";
+            }
         }
     }
 });
@@ -64,6 +75,10 @@ topRight.addEventListener("click", () => {
         
         if(gameActive == true) {
             opponentsTurn();
+            if(gameActive == true) {
+                lastGameResult.style.display = "none";
+                difficultyContainer.style.display = "none";
+            }
         }
     }
 });
@@ -76,6 +91,10 @@ middleLeft.addEventListener("click", () => {
         
         if(gameActive == true) {
             opponentsTurn();
+            if(gameActive == true) {
+                lastGameResult.style.display = "none";
+                difficultyContainer.style.display = "none";
+            }
         }
     }
 });
@@ -88,6 +107,10 @@ middleCenter.addEventListener("click", () => {
         
         if(gameActive == true) {
             opponentsTurn();
+            if(gameActive == true) {
+                lastGameResult.style.display = "none";
+                difficultyContainer.style.display = "none";
+            }
         }
     }
 });
@@ -100,6 +123,10 @@ middleRight.addEventListener("click", () => {
         
         if(gameActive == true) {
             opponentsTurn();
+            if(gameActive == true) {
+                lastGameResult.style.display = "none";
+                difficultyContainer.style.display = "none";
+            }
         }
     }
 });
@@ -112,6 +139,10 @@ bottomLeft.addEventListener("click", () => {
         
         if(gameActive == true) {
             opponentsTurn();
+            if(gameActive == true) {
+                lastGameResult.style.display = "none";
+                difficultyContainer.style.display = "none";
+            }
         }
     }
 });
@@ -124,6 +155,10 @@ bottomCenter.addEventListener("click", () => {
         
         if(gameActive == true) {
             opponentsTurn();
+            if(gameActive == true) {
+                lastGameResult.style.display = "none";
+                difficultyContainer.style.display = "none";
+            }
         }
     }
 });
@@ -136,6 +171,10 @@ bottomRight.addEventListener("click", () => {
         
         if(gameActive == true) {
             opponentsTurn();
+            if(gameActive == true) {
+                lastGameResult.style.display = "none";
+                difficultyContainer.style.display = "none";
+            }
         }
     }
 });
@@ -174,15 +213,40 @@ function startGame() {
     gameBoard.set('bottomCenterBoard', "");
     gameBoard.set('bottomRightBoard', "");
 
+    winningSpot = "";
+    losingSpot = "";
+
     gameActive = true;
     myTurn = true;
+    
+    lastGameResult.style.display = "none";
     startGameButton.style.display = "none";
+    difficultyContainer.style.display = "none";
 }
 
 function gameOver() {
     gameActive = false;
     myTurn = false;
+    lastGameResult.style.display = "";
     startGameButton.style.display = "";
+    difficultyContainer.style.display = "";
+}
+
+function makePlayerMove(gameBoardPosition) {
+    if(gameActive == true && myTurn == true && getAvailableSpots().includes(gameBoardPosition)) {
+        if(gameBoardPosition == 'topLeft') () => topLeft.classList.add(playerGamePiece);
+        gameBoard.set(gameBoardPosition + 'Board', playerGamePiece);
+        checkForWin();
+        checkForTie();
+        
+        if(gameActive == true) {
+            opponentsTurn();
+            if(gameActive == true) {
+                lastGameResult.style.display = "none";
+                difficultyContainer.style.display = "none";
+            }
+        }
+    }
 }
 
 function checkForWin() {
@@ -194,9 +258,7 @@ function checkForWin() {
     && gameBoard.get('topLeftBoard') == playerGamePiece 
     && gameBoard.get('topCenterBoard') == playerGamePiece 
     && gameBoard.get('topRightBoard') == playerGamePiece) {
-        // console.log(playerGamePiece + " won!");
         gameOver();
-        // alert('You won!');
     }
 
     // Check middle row
@@ -206,9 +268,7 @@ function checkForWin() {
     && gameBoard.get('middleLeftBoard') == playerGamePiece 
     && gameBoard.get('middleCenterBoard') == playerGamePiece 
     && gameBoard.get('middleRightBoard') == playerGamePiece) {
-        // console.log(playerGamePiece + " won!");
         gameOver();
-        // alert('You won!');
     }
 
     // Check bottom row
@@ -218,9 +278,7 @@ function checkForWin() {
     && gameBoard.get('bottomLeftBoard') == playerGamePiece 
     && gameBoard.get('bottomCenterBoard') == playerGamePiece 
     && gameBoard.get('bottomRightBoard') == playerGamePiece) {
-        // console.log(playerGamePiece + " won!");
         gameOver();
-        // alert('You won!');
     }
 
     // Check left column
@@ -230,9 +288,7 @@ function checkForWin() {
     && gameBoard.get('topLeftBoard') == playerGamePiece 
     && gameBoard.get('middleLeftBoard') == playerGamePiece 
     && gameBoard.get('bottomLeftBoard') == playerGamePiece) {
-        // console.log(playerGamePiece + " won!");
         gameOver();
-        // alert('You won!');
     }
 
     // Check center column
@@ -242,9 +298,7 @@ function checkForWin() {
     && gameBoard.get('topCenterBoard') == playerGamePiece 
     && gameBoard.get('middleCenterBoard') == playerGamePiece 
     && gameBoard.get('bottomCenterBoard') == playerGamePiece) {
-        // console.log(playerGamePiece + " won!");
         gameOver();
-        // alert('You won!');
     }
 
     // Check right column
@@ -254,9 +308,7 @@ function checkForWin() {
     && gameBoard.get('topRightBoard') == playerGamePiece 
     && gameBoard.get('middleRightBoard') == playerGamePiece 
     && gameBoard.get('bottomRightBoard') == playerGamePiece) {
-        // console.log(playerGamePiece + " won!");
         gameOver();
-        // alert('You won!');
     }
 
     // Check diagonally top left to bottom right
@@ -266,9 +318,7 @@ function checkForWin() {
     && gameBoard.get('topLeftBoard') == playerGamePiece 
     && gameBoard.get('middleCenterBoard') == playerGamePiece 
     && gameBoard.get('bottomRightBoard') == playerGamePiece) {
-        // console.log(playerGamePiece + " won!");
         gameOver();
-        // alert('You won!');
     }
 
     // Check diagonally top right to bottom left
@@ -278,9 +328,7 @@ function checkForWin() {
     && gameBoard.get('topRightBoard') == playerGamePiece 
     && gameBoard.get('middleCenterBoard') == playerGamePiece 
     && gameBoard.get('bottomLeftBoard') == playerGamePiece) {
-        // console.log(playerGamePiece + " won!");
         gameOver();
-        // alert('You won!');
     }
 }
 
@@ -293,9 +341,7 @@ function checkForLoss() {
     && gameBoard.get('topLeftBoard') == opponentGamePiece 
     && gameBoard.get('topCenterBoard') == opponentGamePiece 
     && gameBoard.get('topRightBoard') == opponentGamePiece) {
-        // console.log(opponentGamePiece + " won!");
         gameOver();
-        // alert('You lost!');
     }
 
     // Check middle row
@@ -305,9 +351,7 @@ function checkForLoss() {
     && gameBoard.get('middleLeftBoard') == opponentGamePiece 
     && gameBoard.get('middleCenterBoard') == opponentGamePiece 
     && gameBoard.get('middleRightBoard') == opponentGamePiece) {
-        // console.log(opponentGamePiece + " won!");
         gameOver();
-        // alert('You lost!');
     }
 
     // Check bottom row
@@ -317,9 +361,7 @@ function checkForLoss() {
     && gameBoard.get('bottomLeftBoard') == opponentGamePiece 
     && gameBoard.get('bottomCenterBoard') == opponentGamePiece 
     && gameBoard.get('bottomRightBoard') == opponentGamePiece) {
-        // console.log(opponentGamePiece + " won!");
         gameOver();
-        // alert('You lost!');
     }
 
     // Check left column
@@ -329,9 +371,7 @@ function checkForLoss() {
     && gameBoard.get('topLeftBoard') == opponentGamePiece 
     && gameBoard.get('middleLeftBoard') == opponentGamePiece 
     && gameBoard.get('bottomLeftBoard') == opponentGamePiece) {
-        // console.log(opponentGamePiece + " won!");
         gameOver();
-        // alert('You lost!');
     }
 
     // Check center column
@@ -341,9 +381,7 @@ function checkForLoss() {
     && gameBoard.get('topCenterBoard') == opponentGamePiece 
     && gameBoard.get('middleCenterBoard') == opponentGamePiece 
     && gameBoard.get('bottomCenterBoard') == opponentGamePiece) {
-        // console.log(opponentGamePiece + " won!");
         gameOver();
-        // alert('You lost!');
     }
 
     // Check right column
@@ -353,9 +391,7 @@ function checkForLoss() {
     && gameBoard.get('topRightBoard') == opponentGamePiece 
     && gameBoard.get('middleRightBoard') == opponentGamePiece 
     && gameBoard.get('bottomRightBoard') == opponentGamePiece) {
-        // console.log(opponentGamePiece + " won!");
         gameOver();
-        // alert('You lost!');
     }
 
     // Check diagonally top left to bottom right
@@ -365,9 +401,7 @@ function checkForLoss() {
     && gameBoard.get('topLeftBoard') == opponentGamePiece 
     && gameBoard.get('middleCenterBoard') == opponentGamePiece 
     && gameBoard.get('bottomRightBoard') == opponentGamePiece) {
-        // console.log(opponentGamePiece + " won!");
         gameOver();
-        // alert('You lost!');
     }
 
     // Check diagonally top right to bottom left
@@ -377,18 +411,13 @@ function checkForLoss() {
     && gameBoard.get('topRightBoard') == opponentGamePiece 
     && gameBoard.get('middleCenterBoard') == opponentGamePiece 
     && gameBoard.get('bottomLeftBoard') == opponentGamePiece) {
-        // console.log(opponentGamePiece + " won!");
         gameOver();
-        // alert('You lost!');
     }
 }
 
 function checkForTie() {
     if(getAvailableSpots().length == 0) {
-        // console.log('You tied!');
         gameOver();
-        
-        // alert('You tied!');
     }
 }
 
@@ -396,7 +425,6 @@ function opponentsTurn() {
     myTurn = false;
 
     opponentsChoice = chooseAvailableSpot(gameDifficulty);
-    // console.log(opponentsChoice);
 
     if(opponentsChoice == "topLeft") {
         topLeft.classList.add(opponentGamePiece);
@@ -521,8 +549,6 @@ function getAvailableSpots() {
         availableGameBoard.push('bottomRight');
     }
 
-    // console.log(availableGameBoard);
-
     return availableGameBoard;
 }
 
@@ -605,7 +631,7 @@ function canIWin() {
     && gameBoard.get('bottomRightBoard') == opponentGamePiece)
     || (gameBoard.get('topRightBoard') == ""
     && gameBoard.get('middleCenterBoard') == opponentGamePiece
-    && gameBoard.get('bottomLeftBoard') == "")) {
+    && gameBoard.get('bottomLeftBoard') == opponentGamePiece)) {
         winningSpot = "topRight";
     }
     // Check middle left
@@ -713,7 +739,7 @@ function canILose() {
     && gameBoard.get('bottomRightBoard') == playerGamePiece)
     || (gameBoard.get('topRightBoard') == ""
     && gameBoard.get('middleCenterBoard') == playerGamePiece
-    && gameBoard.get('bottomLeftBoard') == "")) {
+    && gameBoard.get('bottomLeftBoard') == playerGamePiece)) {
         losingSpot = "topRight";
     }
     // Check middle left
@@ -737,7 +763,7 @@ function canILose() {
     && gameBoard.get('bottomRightBoard') == playerGamePiece)
     || (gameBoard.get('topRightBoard') == playerGamePiece
     && gameBoard.get('middleCenterBoard') == ""
-    && gameBoard.get('bottomRightBoard') == playerGamePiece)) {
+    && gameBoard.get('bottomLeftBoard') == playerGamePiece)) {
         losingSpot = "middleCenter";
     }
     // Check middle right
