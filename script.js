@@ -29,6 +29,7 @@ const opponentGamePiece = "o";
 let gameDifficulty = "hard";
 let gameActive = true;
 let myTurn = true;
+let gameResult = "";
 
 lastGameResult.style.display = "none";
 startGameButton.style.display = "none";
@@ -224,9 +225,12 @@ function startGame() {
     difficultyContainer.style.display = "none";
 }
 
-function gameOver() {
+function gameOver(result) {
     gameActive = false;
     myTurn = false;
+    if(result == "won") {lastGameResult.innerHTML = "You won!"}
+    if(result == "lost") {lastGameResult.innerHTML = "You lost!"}
+    if(result == "tied") {lastGameResult.innerHTML = "You tied!"}
     lastGameResult.style.display = "";
     startGameButton.style.display = "";
     difficultyContainer.style.display = "";
@@ -258,7 +262,7 @@ function checkForWin() {
     && gameBoard.get('topLeftBoard') == playerGamePiece 
     && gameBoard.get('topCenterBoard') == playerGamePiece 
     && gameBoard.get('topRightBoard') == playerGamePiece) {
-        gameOver();
+        gameOver("won");
     }
 
     // Check middle row
@@ -268,7 +272,7 @@ function checkForWin() {
     && gameBoard.get('middleLeftBoard') == playerGamePiece 
     && gameBoard.get('middleCenterBoard') == playerGamePiece 
     && gameBoard.get('middleRightBoard') == playerGamePiece) {
-        gameOver();
+        gameOver("won");
     }
 
     // Check bottom row
@@ -278,7 +282,7 @@ function checkForWin() {
     && gameBoard.get('bottomLeftBoard') == playerGamePiece 
     && gameBoard.get('bottomCenterBoard') == playerGamePiece 
     && gameBoard.get('bottomRightBoard') == playerGamePiece) {
-        gameOver();
+        gameOver("won");
     }
 
     // Check left column
@@ -288,7 +292,7 @@ function checkForWin() {
     && gameBoard.get('topLeftBoard') == playerGamePiece 
     && gameBoard.get('middleLeftBoard') == playerGamePiece 
     && gameBoard.get('bottomLeftBoard') == playerGamePiece) {
-        gameOver();
+        gameOver("won");
     }
 
     // Check center column
@@ -298,7 +302,7 @@ function checkForWin() {
     && gameBoard.get('topCenterBoard') == playerGamePiece 
     && gameBoard.get('middleCenterBoard') == playerGamePiece 
     && gameBoard.get('bottomCenterBoard') == playerGamePiece) {
-        gameOver();
+        gameOver("won");
     }
 
     // Check right column
@@ -308,7 +312,7 @@ function checkForWin() {
     && gameBoard.get('topRightBoard') == playerGamePiece 
     && gameBoard.get('middleRightBoard') == playerGamePiece 
     && gameBoard.get('bottomRightBoard') == playerGamePiece) {
-        gameOver();
+        gameOver("won");
     }
 
     // Check diagonally top left to bottom right
@@ -318,7 +322,7 @@ function checkForWin() {
     && gameBoard.get('topLeftBoard') == playerGamePiece 
     && gameBoard.get('middleCenterBoard') == playerGamePiece 
     && gameBoard.get('bottomRightBoard') == playerGamePiece) {
-        gameOver();
+        gameOver("won");
     }
 
     // Check diagonally top right to bottom left
@@ -328,7 +332,7 @@ function checkForWin() {
     && gameBoard.get('topRightBoard') == playerGamePiece 
     && gameBoard.get('middleCenterBoard') == playerGamePiece 
     && gameBoard.get('bottomLeftBoard') == playerGamePiece) {
-        gameOver();
+        gameOver("won");
     }
 }
 
@@ -341,7 +345,7 @@ function checkForLoss() {
     && gameBoard.get('topLeftBoard') == opponentGamePiece 
     && gameBoard.get('topCenterBoard') == opponentGamePiece 
     && gameBoard.get('topRightBoard') == opponentGamePiece) {
-        gameOver();
+        gameOver("lost");
     }
 
     // Check middle row
@@ -351,7 +355,7 @@ function checkForLoss() {
     && gameBoard.get('middleLeftBoard') == opponentGamePiece 
     && gameBoard.get('middleCenterBoard') == opponentGamePiece 
     && gameBoard.get('middleRightBoard') == opponentGamePiece) {
-        gameOver();
+        gameOver("lost");
     }
 
     // Check bottom row
@@ -361,7 +365,7 @@ function checkForLoss() {
     && gameBoard.get('bottomLeftBoard') == opponentGamePiece 
     && gameBoard.get('bottomCenterBoard') == opponentGamePiece 
     && gameBoard.get('bottomRightBoard') == opponentGamePiece) {
-        gameOver();
+        gameOver("lost");
     }
 
     // Check left column
@@ -371,7 +375,7 @@ function checkForLoss() {
     && gameBoard.get('topLeftBoard') == opponentGamePiece 
     && gameBoard.get('middleLeftBoard') == opponentGamePiece 
     && gameBoard.get('bottomLeftBoard') == opponentGamePiece) {
-        gameOver();
+        gameOver("lost");
     }
 
     // Check center column
@@ -381,7 +385,7 @@ function checkForLoss() {
     && gameBoard.get('topCenterBoard') == opponentGamePiece 
     && gameBoard.get('middleCenterBoard') == opponentGamePiece 
     && gameBoard.get('bottomCenterBoard') == opponentGamePiece) {
-        gameOver();
+        gameOver("lost");
     }
 
     // Check right column
@@ -391,7 +395,7 @@ function checkForLoss() {
     && gameBoard.get('topRightBoard') == opponentGamePiece 
     && gameBoard.get('middleRightBoard') == opponentGamePiece 
     && gameBoard.get('bottomRightBoard') == opponentGamePiece) {
-        gameOver();
+        gameOver("lost");
     }
 
     // Check diagonally top left to bottom right
@@ -401,7 +405,7 @@ function checkForLoss() {
     && gameBoard.get('topLeftBoard') == opponentGamePiece 
     && gameBoard.get('middleCenterBoard') == opponentGamePiece 
     && gameBoard.get('bottomRightBoard') == opponentGamePiece) {
-        gameOver();
+        gameOver("lost");
     }
 
     // Check diagonally top right to bottom left
@@ -411,13 +415,13 @@ function checkForLoss() {
     && gameBoard.get('topRightBoard') == opponentGamePiece 
     && gameBoard.get('middleCenterBoard') == opponentGamePiece 
     && gameBoard.get('bottomLeftBoard') == opponentGamePiece) {
-        gameOver();
+        gameOver("lost");
     }
 }
 
 function checkForTie() {
     if(getAvailableSpots().length == 0) {
-        gameOver();
+        gameOver("tied");
     }
 }
 
