@@ -223,7 +223,25 @@ function startGame() {
     lastGameResult.style.display = "none";
     startGameButton.style.display = "none";
     difficultyContainer.style.display = "none";
+
+    // console.log(orderTheArray(["a", "b", "c"]));
 }
+
+// function orderTheArray(arrayToOrder) {
+
+//     // Create an array to output
+//     let outputArray = [];
+//     let number = 1;
+
+//     // Loop through the inputed array and insert the number to each string in the array
+//     for(let i=0; i < arrayToOrder.length; i++) {
+//         outputArray.push(number.toString() + ". " + arrayToOrder[i]);
+//         number++;
+//     }
+
+//     // Output the new array
+//     return outputArray;
+// }
 
 function gameOver(result) {
     gameActive = false;
