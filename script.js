@@ -29,6 +29,7 @@ const opponentGamePiece = "o";
 let gameDifficulty = "hard";
 let gameActive = true;
 let myTurn = true;
+// let playerFirst = true;
 let gameResult = "";
 
 lastGameResult.style.display = "none";
@@ -616,6 +617,23 @@ function makeBestMove() {
     }
     else {
         return makeRandomMove();
+
+        // 1ST PLAYER
+
+        // If the board is empty (turn 1), choose a corner.
+
+        // If there are only 2 spaces taken (turn 3) if the center is taken, choose the opposite corner.
+        // Else if the opposite corner is taken, choose one of the other corners.
+        // Else choose the corner opposite of the other player's game piece. 
+
+        // If there are only 4 spaces taken (turn 5) take the remaining corner that has 2 middle edges open next to it. If both corners don't have both middle edges open, take the center.`1
+
+
+        // 2ND PLAYER
+
+        // If they took a corner, choose the center. if they took the center, choose a corner.
+
+        // If you got the center, try to take a middle edge next (they can only tie or lose then)
     }
 }
 
